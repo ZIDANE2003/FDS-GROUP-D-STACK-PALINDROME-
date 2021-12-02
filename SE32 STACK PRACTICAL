@@ -1,0 +1,116 @@
+#include<iostream>
+#include<string.h>
+
+using namespace std;
+#define SIZE 50
+class Stack
+{
+ char input_str[SIZE];
+ char stack_data[SIZE];
+ int top,length,char_count;
+public:
+ Stack() 
+ {
+ top=-1;
+ length=0;
+ char_count=0;
+ 
+}
+ void push(char);
+ char pop();
+ void input_data();
+ void check_palindrome();
+ void get_characters();
+ void original();
+ void reverse();
+};
+void Stack::push(char temp) // push to insert element in stack
+{
+ if(top==SIZE-1)
+ 
+{
+ cout<<"\n Stack is full";
+ return;
+ 
+}
+ top++;
+ stack_data[top]=temp; }
+ 
+char Stack::pop() // pop to remove element from stack
+{
+ if(top==-1)
+ 
+{
+ cout<<"\n Stack is empty ";
+ 
+}
+ char temp=stack_data[top];
+ top--
+;
+ return temp; }
+void Stack::input_data() {
+ cout<<"\n Enter a String: ";
+ cin.getline(input_str,SIZE);
+ length=strlen(input_str); }
+void Stack::get_characters() {
+ char temp[SIZE];
+ int i,j;
+ for(i=0; i<length; i++)
+ 
+{
+ temp[i]=input_str[i];
+ 
+}
+ j=0;
+ for(i=0; i<length; i++ )
+ 
+{
+ if(isalpha(temp[i]))
+ 
+{
+ input_str[j]=tolower(temp[i]);
+ j++;
+ 
+}
+ 
+}
+
+ length=j; 
+}
+void Stack::check_palindrome()
+{
+ for(int i=0; i<length; i++)
+ push(input_str[i]);
+ for(int i=0; i<length; i++)
+ {
+ if(input_str[i]==pop())
+ char_count++;
+ }
+ if(char_count==length)
+ cout<<"\n string is a Palindrome \n";
+ else
+ cout<<"\n  string is not a Palindrome \n";
+}
+void Stack::original()
+{
+ for(int i=0; i<=length-1; i++)
+ cout<<input_str[i];
+}
+void Stack::reverse()
+{
+ for(int i=length-1; i>=0; i--)
+ cout<<input_str[i];
+}
+int main()
+{
+
+ Stack test;
+ test.input_data();
+ test.get_characters();
+ cout<<"\n Display original String: ";
+ test.original();
+ cout<<"\n Display reversed string: ";
+ test.reverse();
+ test.check_palindrome();
+ return 0;
+}
